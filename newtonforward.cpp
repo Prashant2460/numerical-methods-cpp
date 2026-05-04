@@ -18,7 +18,6 @@ int main() {
     cout << "Enter the x value to interpolate: ";
     cin >> x_val;
 
-    // Forward Difference Table
     double table[n] [n];
     for (int i = 0; i < n; i++) {
         table[i][0] = y[i];
@@ -30,11 +29,9 @@ int main() {
         }
     }
 
-    // Calculate p
     double h = x[1] - x[0];
     double p = (x_val - x[0]) / h;
 
-    // Newton's Forward Formula
     double result = table[0][0];
     double fact = 1.0;
 

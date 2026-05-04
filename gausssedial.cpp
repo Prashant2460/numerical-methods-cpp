@@ -31,7 +31,6 @@ int main() {
             return 0;
         }
 
-        // Gauss-Seidel: Use new x immediately for y, and new x,y for z
         x = (d1 - b1 * y - c1 * z) / a1;
         y = (d2 - a2 * x - c2 * z) / b2;
         z = (d3 - a3 * x - b3 * y) / c3;

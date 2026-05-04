@@ -1,35 +1,49 @@
 #include <iostream>
-#include <cmath>
+
 using namespace std;
 
 double f(double x) {
-    return x*x*x - x - 2; 
+    return (x * x * x) - x - 2;
 }
-void bisection(double a, double b, double tol) {
+
+int main() {
+    double a, b;
+    int steps;
+
+    cout << "Enter start point (a): ";
+    cin >> a;
+    cout << "Enter end point (b): ";
+    cin >> b;
+    cout << "Enter number of steps: ";
+    cin >> steps;
+
     if (f(a) * f(b) >= 0) {
-        cout << "Invalid interval: f(a) and f(b) must have opposite signs." << endl;
-        return;
+        cout << "Error: f(a) and f(b) must have opposite signs." << endl;
+        return 0;
     }
 
     double c;
-    while ((b - a) >= tol) {
-        c = (a + b) / 2;
-        if (f(c) == 0.0)
-            break;
+    cout << "\nStep\t a\t\t b\t\t c\t\t f(c)" << endl;
+    cout << "---------" << endl;
 
-        if (f(c) * f(a) < 0)
+    for (int i = 1; i <= steps; i++) {
+        c = (a + b) / 2;
+
+        cout << i << "\t " << a << "\t " << b << "\t " << c << "\t " << f(c) << endl;
+
+        if (f(c) == 0) {
+            cout << "\nExact root found: " << c << endl;
+            return 0;
+        }
+
+        if (f(c) * f(a) < 0) {
             b = c;
-        else
+        } else {
             a = c;
+        }
     }
 
-    cout << "The root is approximately: " << c << endl;
-}
-int main() {
-    double a = 1, b = 2;   
-    double tol = 0.0001;   
-
-    bisection(a, b, tol);
+    cout << "\nApproximate root after " << steps << " steps: " << c << endl;
 
     return 0;
 }
